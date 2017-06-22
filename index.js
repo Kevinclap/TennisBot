@@ -5,8 +5,8 @@ const MessengerBot = require('vott-messenger')
 
 /** instantiate MessengerBot */
 const myBot = new MessengerBot({
-  access_token:'EAABv6trc5SABAF8SckcGCHZCGJYQZCytQ491qeUXKWwngFX2Gy0LRNMDGPQVZBVt5ZCYCZC42mXc1ZATo2NaupMcQPFNZA9cGwrecKSP1eu7Kq4M6fpxSjZADbn5VUOZC2wagPbyX6SO8ZByusmVUZBc5GsPUC7pmdZBmWPO8dLFreW3bgZDZD',
-  verify_token:'123bass',
+  access_token: 'EAABv6trc5SABAF8SckcGCHZCGJYQZCytQ491qeUXKWwngFX2Gy0LRNMDGPQVZBVt5ZCYCZC42mXc1ZATo2NaupMcQPFNZA9cGwrecKSP1eu7Kq4M6fpxSjZADbn5VUOZC2wagPbyX6SO8ZByusmVUZBc5GsPUC7pmdZBmWPO8dLFreW3bgZDZD',
+  verify_token: '123bass',
   endpoint: '/facebook/receive',
 })
 
@@ -23,18 +23,22 @@ myBot.on('message_received', function (bot, event) {
         chat.say('Player Rating is determined by the National Tennis Rating Program on a scale from 2.0 to 7.0')
         chat.repeat()
       } else {
-        chat.save({ user_city: res.text })
+        chat.save({
+          user_city: res.text
+        })
         var city = res.text
       }
       chat.next()
     })
-     chat.ask('Do you want to play with a male, female or both?', function (res, chat) {
+    chat.ask('Do you want to play with a male, female or both?', function (res, chat) {
       if (res.text === 'help') {
         chat.say('You can type a gender if you want to play with one in particular, if not, type "both"')
         chat.say('Player Rating is determined by the National Tennis Rating Program on a scale from 2.0 to 7.0')
         chat.repeat()
       } else {
-        chat.save({ user_gender: res.text })
+        chat.save({
+          user_gender: res.text
+        })
         var gender = res.text
       }
       chat.next()
@@ -45,15 +49,17 @@ myBot.on('message_received', function (bot, event) {
         chat.say('You can type a gender if you want to play with one in particular, if not, type "both"')
         chat.say('Player Rating is determined by the National Tennis Rating Program on a scale from 2.0 to 7.0');
         chat.repeat()
-      } else {  
-        chat.save({ user_rating: res.text })
+      } else {
+        chat.save({
+          user_rating: res.text
+        })
         var rating = res.text
-        playersObject(); 
+        playersObject();
         chat.say('Player: ' + name + 'City: ' + city + 'Rating: ' + rating)
         chat.say(result)
       }
       chat.next()
-    
+
     })
 
     chat.next()
@@ -82,9 +88,9 @@ myBot.setupServer(3000, function (err, server) {
 
 
 
-  // console.log(chat.state.user_city)
-  //     console.log(chat.state.user_gender)
-  //     console.log(chat.state.user_rating)
+// console.log(chat.state.user_city)
+//     console.log(chat.state.user_gender)
+//     console.log(chat.state.user_rating)
 
 
 
@@ -93,14 +99,3 @@ myBot.setupServer(3000, function (err, server) {
 //   chat.say('You can type a gender if you want to play with one in particular, if not, type "both"')
 //   chat.say('Player Rating is determined by the National Tennis Rating Program on a scale from 2.0 to 7.0')
 // }
-
-
-
-
-
-
-
-
-
-
-
