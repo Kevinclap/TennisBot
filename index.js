@@ -1,5 +1,8 @@
-var playersObject = require('./webS.js').playersObject
-
+var playersObject = require('./webS.js')
+var playerList
+playersObject.getPlayerList(function (err, list) {
+  playerList = list
+})
 
 const MessengerBot = require('vott-messenger')
 
