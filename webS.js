@@ -25,30 +25,32 @@ function getPlayerList (callback) {
 
 function findPlayers (params) {
   var results = []
+  var randomResults = []
   for (var i = 0; i < params.list.length; i++) {
     if (params.list[i].gender === params.gender &&
         params.list[i].city === params.city &&
         params.list[i].rating === params.rating) {
       results.push(params.list[i])
-      if (results.length === 5) {
-        break
-      }
     }
   }
-  return results
+  for (var i = 0; i < 5; i++) {
+  let randomIndex = Math.floor(Math.random()*results.length)
+  randomResults.push(results[randomIndex]);
+  }
+  
+  return randomResults;
+
+}
+
+  
+
+
+module.exports = {
+  getPlayerList: getPlayerList,
+  findPlayers: findPlayers
 }
 
 
-// TEST
-getPlayerList(function (error, list) {
-  if (error) {
-    console.log(error)
-  }
-  var players = findPlayers({
-    list: list,
-    gender: 'M',
-    rating: '4.5',
-    city: 'Caguas'
-  })
-  console.log(players)
-})
+
+// var results = results[Math.floor(Math.random()*results.length)];
+
